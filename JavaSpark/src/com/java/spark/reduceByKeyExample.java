@@ -27,13 +27,13 @@ public class reduceByKeyExample {
 		
 		JavaRDD<String> data = sc.textFile(args[0]);
 		// mapToPair function will map JavaRDD to JavaPairRDD
-    JavaPairRDD<String, Integer> rddX =data.mapToPair(e -> new Tuple2<String, Integer>(e, 1));
-    // New JavaPairRDD 
-    JavaPairRDD<String, Integer> rddY = rddX.reduceByKey((key,value)->key+1);
-    //Print tuples
-    for(Tuple2<String, Integer> element : rddY.collect()){
-        System.out.println("("+element._1+", "+element._2+")");
-    }
+		JavaPairRDD<String, Integer> rddX =data.mapToPair(e -> new Tuple2<String, Integer>(e, 1));
+		// New JavaPairRDD 
+		JavaPairRDD<String, Integer> rddY = rddX.reduceByKey((key,value)->key+1);
+		//Print tuples
+		for(Tuple2<String, Integer> element : rddY.collect()){
+			System.out.println("("+element._1+", "+element._2+")");
+		}
 		
 	}
 
