@@ -1,7 +1,6 @@
 package com.java.spark;
 
 import org.apache.spark.SparkConf;
-import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -26,15 +25,15 @@ public class reduceByKeyExample {
 		SparkConf conf = new SparkConf().setMaster("local").setAppName("ReduceByKey");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 		
-		JavaRDD<String> data = sc.textFile("D:\\SampleData\\worldcount.txt");
+		JavaRDD<String> data = sc.textFile(args[0]);
 		// mapToPair function will map JavaRDD to JavaPairRDD
-        JavaPairRDD<String, Integer> rddX =data.mapToPair(e -> new Tuple2<String, Integer>(e, 1));
-        // New JavaPairRDD 
-        JavaPairRDD<String, Integer> rddY = rddX.reduceByKey((key,value)->key+1);
-        //Print tuples
-        for(Tuple2<String, Integer> element : rddY.collect()){
-            System.out.println("("+element._1+", "+element._2+")");
-        }
+    JavaPairRDD<String, Integer> rddX =data.mapToPair(e -> new Tuple2<String, Integer>(e, 1));
+    // New JavaPairRDD 
+    JavaPairRDD<String, Integer> rddY = rddX.reduceByKey((key,value)->key+1);
+    //Print tuples
+    for(Tuple2<String, Integer> element : rddY.collect()){
+        System.out.println("("+element._1+", "+element._2+")");
+    }
 		
 	}
 
