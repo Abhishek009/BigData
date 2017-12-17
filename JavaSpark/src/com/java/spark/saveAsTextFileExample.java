@@ -15,7 +15,7 @@ public class saveAsTextFileExample {
 
 	public static void main(String[] args) {
 
-		SparkConf conf = new SparkConf().setMaster("local").setAppName("ReduceByKey");
+		SparkConf conf = new SparkConf().setMaster("local").setAppName("Save as Text file");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 		String firstPath = args[0];
 		String fileRead = args[1];
