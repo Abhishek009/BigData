@@ -24,7 +24,11 @@ public class worldCountExample {
 		JavaPairRDD<String, Integer> reduceData = pairData.reduceByKey((key,value)->key+value);
 		//Save the output to a file
 		reduceData.saveAsTextFile(args[1]);
-
+		
+		reduceData.foreach(data1 -> {
+	        System.out.println(data1._1() +"-"+ data1._2());
+	    }); 
+		
 	}
 
 }
