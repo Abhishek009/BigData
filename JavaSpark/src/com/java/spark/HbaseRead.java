@@ -11,6 +11,9 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 
+/*
+* Read data from hbase
+*/
 public class HbaseRead {
 
 	public static void main(String[] args) {
@@ -20,12 +23,13 @@ public class HbaseRead {
 			System.out.println("Insufficient parameter");
 			System.exit(0);
 		}else {
-			tableName = args[0];
+			tableName = args[0]; // Table name
 			SparkConf sparkConf = new SparkConf().setAppName("HBaseRead");
 			sparkConf.set("spark.serializer", "org.apache.spark.serializer.KyroSerializer");
 			JavaSparkContext jsc = new JavaSparkContext(sparkConf);
 			
 			Configuration hbaseconf = HBaseConfiguration.create();
+			// Change configuration file as per your server.
 			hbaseconf.addResource(new Path("/etc/hbase/conf/hbase-site.xml"));
 			hbaseconf.addResource(new Path("/etc/hadoop/conf/core-site.xml"));
 			hbaseconf.set("hbase.client.retries.number", "10");
