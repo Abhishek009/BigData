@@ -20,29 +20,22 @@ sh /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --zookeeper sandb
 sh /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --zookeeper sandbox.hortonworks.com:2181 --alter --topic movie --replication-factor 3
 
 ######################Increase kafka partition######################
-sh /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --alter --zookeeper sandbox.hortonworks.com:2181 --topic movie --partition 2 
+sh /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --alter --zookeeper sandbox.hortonworks.com:2181 --topic movie --partition 2
 
-#########To get the latest offset###########
-sh /usr/hdp/current/kafka-broker/bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list sandbox.hortonworks.com:6667 --time 1 --topic movie
+#########To get the largest offset###########
+sh /usr/hdp/current/kafka-broker/bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list sandbox.hortonworks.com:6667 --time -1 --topic movie
 
-#########To get the latest offset###########
+#########To get the smallest offset###########
 sh /usr/hdp/current/kafka-broker/bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list sandbox.hortonworks.com:6667 --time -2 --topic movie
 
 #########Rebalance kafka############
 sh /usr/hdp/current/kafka-broker/bin/kafka-preferred-replication-election.sh --zookeeper sandbox.hortonworks.com:2181
 
-
-
-
-
-
-
-
-
-
-
-
-
+#########Retention time change############
+Property: retention.ms
+Default: 7days
+server default property: log.retention.minutes
+sh /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --zookeeper sandbox.hortonworks.com:2181 --alter --topic <topicname> --config retention.ms=86400000
 
 
 
