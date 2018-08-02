@@ -1,4 +1,4 @@
-package com.scala.spark
+package com.scala.spark.kafka
 
 import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.SparkConf
@@ -7,7 +7,13 @@ import org.apache.spark.streaming.kafka.KafkaUtils
 import java.util.Date
 import java.text.SimpleDateFormat
 
-/*Read data from kafa using offset from zookeeper*/
+/*
+ * @author:Abhishek Singh
+ * Functionality:
+ * Read data from kafka and store it into a HDFS location. 
+ * Offset are store in zookeeper.
+ * 
+ * */
 
 object kafkaUsingZookeeper {
   
