@@ -29,7 +29,7 @@ class KafkaProducer() {
   private val producer = new Producer[String, Array[Byte]](new ProducerConfig(props))
 
   //Read avro schema file and
-  val schema: Schema = new Parser().parse(Source.fromURL(getClass.getResource("/home/prdodsapp/schema.avsc")).mkString)
+  val schema: Schema = new Parser().parse(Source.fromURL(getClass.getResource("/home/abhi/schema.avsc")).mkString)
 
   def send(topic: String, users: List[User]): Unit = {
     val genericUser: GenericRecord = new GenericData.Record(schema)

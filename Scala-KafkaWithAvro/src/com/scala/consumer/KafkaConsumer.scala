@@ -34,7 +34,7 @@ class KafkaConsumer() {
 
   lazy val iterator = streams.iterator()
 
-  val schemaString = Source.fromURL(getClass.getResource("/home/prdodsapp/schema.avsc")).mkString
+  val schemaString = Source.fromURL(getClass.getResource("/home/abhi/schema.avsc")).mkString
   // Initialize schema
   val schema: Schema = new Schema.Parser().parse(schemaString)
 
